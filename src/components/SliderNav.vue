@@ -13,8 +13,11 @@
 
     </div>
     <div class="user-info">
-      <li>欢迎， xxx</li>
-      <li>退出</li>
+      <li class="user-name">
+        欢迎,{{ username }}
+        <a-icon type="down"></a-icon>
+      </li>
+      <li class="login-out">退出</li>
     </div>
   </div>
 </template>
@@ -28,7 +31,7 @@ export default {
   },
   computed: {
     // 计算属性：是否被折叠，true表示被折叠，false表示不被折叠。
-    ...mapState(['collapsed']),
+    ...mapState(['collapsed', 'username']),
   },
   methods: {
     ...mapActions(['changeCollapsed']),

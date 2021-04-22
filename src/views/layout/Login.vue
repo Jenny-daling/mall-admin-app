@@ -59,19 +59,27 @@ export default {
     };
   },
   methods: {
+    // 提交按钮被点击时的操作
     submitForm(formName) {
+      // 验证用户输入是否合格，如果合格就向后台发送请求
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // 根据loginForm中的内容作为请求参数，根据返回结果判断正确性
           api.login(this.loginForm).then((data) => {
             console.log(data);
+            // 一旦用户信息的保存
+            this.$store.dispatch('setUserInfo', data);
+            // 路由改变，通过hash
             this.$router.push({
               name: 'Home',
             });
-          }).catch((error) => {
+          }).catch((error) => { // 如果报错，就显示报错信息
             this.$message.error(error);
           });
           return true;
         }
+
+        // 如果没有校验通过就在控制台输出错误信息
         console.log('error submit!!');
         return false;
       });
