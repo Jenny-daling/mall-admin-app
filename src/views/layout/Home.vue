@@ -3,14 +3,15 @@
     <left-menu/>
     <div :class="{'main-app': true, 'menu-unfold': collapsed}">
       <slider-nav/>
+      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import leftMenu from '@/components/Menu.vue';
-import sliderNav from '@/components/SliderNav.vue';
 import { mapState } from 'vuex';
+import leftMenu from './components/Menu.vue';
+import sliderNav from './components/SliderNav.vue';
 
 export default {
   components: {

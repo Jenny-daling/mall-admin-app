@@ -66,7 +66,7 @@ export default {
         if (valid) {
           // 根据loginForm中的内容作为请求参数，根据返回结果判断正确性
           api.login(this.loginForm).then((data) => {
-            console.log(data);
+            // console.log(data);
             // 一旦用户信息的保存
             this.$store.dispatch('setUserInfo', data);
             // 路由改变，通过hash
@@ -80,7 +80,7 @@ export default {
         }
 
         // 如果没有校验通过就在控制台输出错误信息
-        console.log('error submit!!');
+        // console.log('error submit!!');
         return false;
       });
     },

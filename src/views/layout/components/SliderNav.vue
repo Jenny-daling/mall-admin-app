@@ -17,7 +17,7 @@
         欢迎,{{ username }}
         <a-icon type="down"></a-icon>
       </li>
-      <li class="login-out">退出</li>
+      <li class="login-out" @click="logOut">退出</li>
     </div>
   </div>
 </template>
@@ -34,9 +34,16 @@ export default {
     ...mapState(['collapsed', 'username']),
   },
   methods: {
-    ...mapActions(['changeCollapsed']),
+    ...mapActions(['changeCollapsed', 'loginOut']),
     toggleCollapsed() {
       this.changeCollapsed();
+    },
+    // 退出登录按钮的点击事件，实现用户登录状态的切换
+    logOut() {
+      this.loginOut();
+      this.$router.push({ // 一旦用户点击退出就会自动跳转至登录页面
+        name: 'Login',
+      });
     },
   },
 };
