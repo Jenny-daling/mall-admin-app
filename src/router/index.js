@@ -14,6 +14,7 @@ const asyncRouterMap = [{
   name: 'Product',
   meta: {
     title: '商品',
+    icon: 'shop',
   },
   component: Home,
   children: [{
@@ -21,6 +22,7 @@ const asyncRouterMap = [{
     name: 'ProductList',
     meta: {
       title: '商品列表',
+      icon: 'unordered-list',
     },
     component: () => import('../views/page/ProductList.vue'),
   },
@@ -29,6 +31,7 @@ const asyncRouterMap = [{
     name: 'ProductAdd',
     meta: {
       title: '商品添加',
+      icon: 'file-add',
     },
     component: () => import('../views/page/ProductAdd.vue'),
   },
@@ -37,6 +40,7 @@ const asyncRouterMap = [{
     name: 'Category',
     meta: {
       title: '商品类目',
+      icon: 'project',
     },
     component: () => import('../views/page/Category.vue'),
   },
@@ -50,12 +54,14 @@ const routes = [
     component: Home,
     meta: {
       title: '首页',
+      icon: 'home',
     },
     children: [{
       path: 'index',
       name: 'Index',
       meta: {
         title: '统计',
+        icon: 'number',
       },
       component: () => import('../views/page/Index.vue'),
     }],
@@ -91,9 +97,14 @@ store.dispatch('changeMenuRoutes', routes.concat(asyncRouterMap));
 //       if (!isAddRoutes) {
 //         // 获取角色能够访问的路由数组
 //         const menuRoutes = getMenuRoute(store.state.user.role, asyncRouterMap);
-//         router.addRoutes(menuRoutes);// 该方法多次执行添加同一批路由会报错
+//
+//         // 以下两步为异步代码
+//         // router.addRoutes(menuRoutes);// 该方法多次执行添加同一批路由会报错
 //         // 将routes中的路由和侧边栏的路由拼接到一起,在menu组建中动态渲染
-//         store.dispatch('changeMenuRoutes', routes.concat(menuRoutes));
+//         store.dispatch('changeMenuRoutes', routes.concat(menuRoutes)).then(() => {
+//           router.addRoutes(menuRoutes);// 该方法多次执行添加同一批路由会报错
+//           next();
+//         });
 //         isAddRoutes = true;
 //       }
 //       return next();// 如果用户不去登录页面，并且用户信息都存在，页面就会正常跳转
