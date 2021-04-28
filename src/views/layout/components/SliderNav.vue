@@ -6,8 +6,14 @@
     <div class="breadcrumb">
       <template>
         <a-breadcrumb>
-          <a-breadcrumb-item>首页</a-breadcrumb-item>
-          <a-breadcrumb-item><a href="">统计</a></a-breadcrumb-item>
+          <a-breadcrumb-item>
+            {{ currentRoute[0] ? currentRoute[0].meta.title : '' }}
+          </a-breadcrumb-item>
+          <a-breadcrumb-item v-if="currentRoute.length > 1">
+            <router-link :to="{name: currentRoute[1] ? currentRoute[1].name : ''}">
+              {{ currentRoute[1] ? currentRoute[1].meta.title : '' }}
+            </router-link>
+          </a-breadcrumb-item>
         </a-breadcrumb>
       </template>
 
@@ -27,11 +33,26 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
-    return {};
+    return {
+      currentRoute: [
+        {
+          meta: {
+            title: '首页',
+          },
+        },
+      ], // 用于存储当前路由
+      username: 'Ms. Zhao',
+    };
   },
   computed: {
-    // 计算属性：是否被折叠，true表示被折叠，false表示不被折叠。
-    ...mapState(['collapsed', 'username']),
+    // 计算属性collapsed：是否被折叠，true表示被折叠，false表示不被折叠。
+    // username 用于标志用户登录后的姓名
+    ...mapState(['collapsed']),
+  },
+  watch: {
+    $route() {
+      this.currentRoute = this.$router.currentRoute.matched;
+    },
   },
   methods: {
     ...mapActions(['changeCollapsed', 'loginOut']),
