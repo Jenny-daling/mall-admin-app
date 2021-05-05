@@ -30,7 +30,6 @@
       <a-button
         type="primary"
         html-type="submit"
-        :disabled="searchForm.searchWord === '' || searchForm.category === ''"
       >
       <!-- :disabled="searchForm.searchWord === '' || searchForm.category === ''" -->
         查询
@@ -40,15 +39,10 @@
 </template>
 
 <script>
-// import productAPI from '@/api/product';
-import categoryAPI from '@/api/category';
+// import categoryAPI from '@/api/category';
 
 export default {
-  created() {
-    categoryAPI.list().then((res) => {
-      this.categoryList = res.data;
-    });
-  },
+  props: ['categoryList'],
   data() {
     return {
       // 用于存储用户的基本信息
@@ -56,7 +50,6 @@ export default {
         searchWord: '',
         category: '',
       },
-      categoryList: [],
     };
   },
   methods: {

@@ -2,9 +2,9 @@
   <div class="menu-list">
     <a-menu
     class="ant-menu"
-    :default-selected-keys="[$router.currentRoute.matched[1] ?
-      $router.currentRoute.matched[1].name : '']"
-    :default-open-keys="[$router.currentRoute.matched[0].name]"
+    :default-selected-keys="[this.$router.currentRoute.matched[1]
+          ? this.$router.currentRoute.matched[1].name : '']"
+    :default-open-keys="[this.$router.currentRoute.matched[0].name]"
     mode="inline"
     theme="dark"
     :inline-collapsed="collapsed"
@@ -49,6 +49,17 @@ export default {
   },
   computed: {
     ...mapState(['collapsed', 'menuRoutes']),
+    // defautSelectKey: {
+    //   get() {
+    //     return this.$router.currentRoute.matched[1]
+    //       ? this.$router.currentRoute.matched[1].name : '';
+    //   },
+    // },
+    // defaultOpenKey: {
+    //   get() {
+    //     return this.$router.currentRoute.matched[0].name;
+    //   },
+    // },
   },
 };
 </script>

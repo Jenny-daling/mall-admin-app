@@ -36,6 +36,15 @@ const asyncRouterMap = [{
     component: () => import('../views/page/ProductAdd.vue'),
   },
   {
+    path: 'edit/:id', // 路由传参，这里的：id用于接收传递的参数
+    name: 'ProductEdit',
+    meta: {
+      title: '编辑商品',
+      icon: 'file-add',
+    },
+    component: () => import('../views/page/ProductAdd.vue'),
+  },
+  {
     path: 'category',
     name: 'Category',
     meta: {

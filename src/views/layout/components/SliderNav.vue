@@ -70,6 +70,10 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang='less'>
+.user-info{
+  position: fixed;
+  right: 0;
+  top: 0;
+}
 </style>
